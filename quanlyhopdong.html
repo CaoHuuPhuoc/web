@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+
+<html lang="vi">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Your head content goes here -->
+    <style>
+        /* CSS code from themhopdong.html */
+        
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        
+        th,
+        td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Danh sách Hợp Đồng</h1>
+    <table>
+        <tr>
+            <th>Mã Hợp Đồng</th>
+            <th>Mã Bất Động Sản</th>
+            <th>Mã Hợp Đồng Tự Động</th>
+            <th>Nội Dung Hợp Đồng</th>
+        </tr>
+
+        <script>
+            // Danh sách hợp đồng
+            var contracts = [{
+                    contractCode: 'HD001',
+                    propertyId: 'BDS001',
+                    autoCode: 'PPC-HD2208001',
+                    content: 'Nội dung hợp đồng 1'
+                }, {
+                    contractCode: 'HD002',
+                    propertyId: 'BDS002',
+                    autoCode: 'PPC-HD2208002',
+                    content: 'Nội dung hợp đồng 2'
+                },
+                // Thêm các hợp đồng khác
+            ];
+
+            // Hiển thị danh sách hợp đồng
+            function displayContracts() {
+                var table = document.querySelector('table');
+
+                // Lấy danh sách hợp đồng từ Local Storage (nếu có)
+                var existingContracts = JSON.parse(localStorage.getItem('contracts')) || [];
+
+                for (var i = 0; i < existingContracts.length; i++) {
+                    var row = table.insertRow(i + 1);
+
+                    var contractCodeCell = row.insertCell(0);
+                    var propertyIdCell = row.insertCell(1);
+                    var autoCodeCell = row.insertCell(2);
+                    var contentCell = row.insertCell(3);
+
+                    contractCodeCell.innerHTML = existingContracts[i].contractCode;
+                    propertyIdCell.innerHTML = existingContracts[i].propertyId;
+                    autoCodeCell.innerHTML = existingContracts[i].autoCode;
+                    contentCell.innerHTML = existingContracts[i].content;
+                }
+            }
+
+            // Gọi hàm hiển thị khi trang được tải
+            document.addEventListener('DOMContentLoaded', function() {
+                displayContracts();
+            });
+
+            // Gọi hàm hiển thị khi trang được tải
+        </script>
+
+
+    </table>
+
+</body>
+
+</html>

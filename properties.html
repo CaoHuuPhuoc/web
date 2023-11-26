@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .navbar {
+            background-color: #82a0a2;
+            overflow: hidden;
+        }
+        
+        .navbar ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            text-align: center;
+        }
+        
+        .navbar li {
+            display: inline-block;
+        }
+        
+        .navbar a {
+            display: block;
+            color: #224349;
+            text-align: center;
+            padding: 20px 18px;
+            text-decoration: none;
+            font-size: 20px;
+        }
+        
+        .navbar a:hover {
+            background-color: #28474d;
+            color: white;
+        }
+        
+        .container {
+            background-color: #28474d;
+            padding: 5px 20px 15px 20px;
+            border: 1px solid lightgrey;
+            border-radius: 3px;
+            color: white;
+            margin-top: 20px;
+        }
+        
+        .property-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            text-align: left;
+        }
+        
+        .property-item {
+            border: 1px solid lightgrey;
+            border-radius: 3px;
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #46515b;
+        }
+        
+        .property-item h2 {
+            color: #82a0a2;
+        }
+        
+        .property-item p {
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <ul>
+            <li><a href="#home">Trang chủ</a></li>
+            <li><a href="#about">Giới thiệu</a></li>
+            <li><a href="#property">Bất động sản</a></li>
+            <li><a href="#contract">Hợp đồng</a></li>
+            <li><a href="#contact">Liên hệ</a></li>
+            <li><a href="#search"><i class="fa fa-search"></i></a></li>
+            <li><a href="#login"><i class="fa fa-fw fa-user"></i></a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1>Danh sách Bất động sản</h1>
+        <ul class="property-list">
+            <!-- Thêm các mục Bất động sản vào đây -->
+            <li class="property-item">
+                <h2>Mã BĐS: 231124999</h2>
+                <p>Tên: Tên BĐS</p>
+                <p>Loại: Loại BĐS</p>
+                <!-- Thêm các thông tin khác của BĐS -->
+            </li>
+            <!-- Mục tiêu thử nghiệm -->
+            <li class="property-item">
+                <h2>Mã BĐS: 123456</h2>
+                <p>Tên: Nhà ở X</p>
+                <p>Loại: Chung cư</p>
+                <!-- Thêm các thông tin khác của BĐS -->
+            </li>
+        </ul>
+    </div>
+    <script>
+        // Trong file properties.html
+        document.addEventListener('DOMContentLoaded', function() {
+            // Kiểm tra xem có tham số URL không
+            var urlParams = new URLSearchParams(window.location.search);
+            var encodedProperties = urlParams.get('properties');
+
+            if (encodedProperties) {
+                var decodedProperties = JSON.parse(decodeURIComponent(encodedProperties));
+                displayProperties(decodedProperties);
+            }
+        });
+
+        function displayProperties(properties) {
+            // Xóa danh sách hiện tại trên trang
+            var propertyList = document.getElementById('property-list');
+            propertyList.innerHTML = '';
+
+            // Hiển thị danh sách bất động sản mới
+            for (var i = 0; i < properties.length; i++) {
+                var propertyItem = document.createElement('li');
+                propertyItem.classList.add('property-item');
+
+                var propertyName = document.createElement('h2');
+                propertyName.textContent = 'Mã BĐS: ' + properties[i].id;
+
+                var propertyType = document.createElement('p');
+                propertyType.textContent = 'Loại: ' + properties[i].type;
+
+                // Thêm các thông tin khác của BĐS
+
+                propertyItem.appendChild(propertyName);
+                propertyItem.appendChild(propertyType);
+
+                propertyList.appendChild(propertyItem);
+            }
+        }
+    </script>
+</body>
+
+</html>

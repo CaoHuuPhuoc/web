@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+
+
+</head>
+
+<body>
+    <nav class="navbar">
+        <ul>
+            <li><a href="#home">Trang chủ</a></li>
+            <li><a href="#about">Giới thiệu</a></li>
+            <li><a href="add_property.html">Bất động sản</a></li>
+            <li><a href="contract.html">Hợp đồng</a></li>
+            <li><a href="#contact">Liên hệ</a></li>
+            <li><a href="#search"><i class="fa fa-search"></i></a></li>
+            <li><a href="#login"><i class="fa fa-fw fa-user"></i></a></li>
+        </ul>
+    </nav>
+
+    <div class="row">
+        <div class="col-75">
+            <div class="container">
+                <!-- Danh sách Bất động sản -->
+                <div id="property-list">
+                    <!-- Các phần tử danh sách sẽ được thêm vào đây -->
+                </div>
+
+                <!-- Form Thêm Bất động sản -->
+                <form action="/action_page.php">
+                    <!-- ... (Code form không thay đổi) ... -->
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Thêm dòng script để định nghĩa properties -->
+    <script>
+        var properties = [];
+
+        // Hàm hiển thị danh sách Bất động sản
+        function showPropertyList() {
+            const propertyListDiv = document.getElementById("property-list");
+            propertyListDiv.innerHTML = "";
+
+            for (const property of properties) {
+                propertyListDiv.innerHTML += `<div>${property.id}: ${property.name}</div>`;
+            }
+        }
+
+        // Hàm chuyển hướng về trang quản lý Bất động sản
+        function goBack() {
+            window.location.href = 'index.html';
+        }
+
+        // Hàm thêm Bất động sản mới
+        function saveProperty() {
+            // ... (Code lưu thông tin Bất động sản không thay đổi) ...
+
+            // Hiển thị danh sách Bất động sản sau khi thêm
+            showPropertyList();
+        }
+
+        function goBack() {
+            window.location.href = 'index.html';
+        }
+
+        function saveProperty() {
+            // ... (đoạn mã xử lý lưu thông tin bất động sản)
+
+            // Chuyển hướng về trang quản lý bất động sản sau khi thêm
+            window.location.href = 'index.html';
+        }
+    </script>
+
+</body>
+
+</html>

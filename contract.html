@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .navbar {
+            background-color: #82a0a2;
+            overflow: hidden;
+        }
+        
+        .navbar ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            text-align: center;
+        }
+        
+        .navbar li {
+            display: inline-block;
+        }
+        
+        .navbar a {
+            display: block;
+            color: #224349;
+            text-align: center;
+            padding: 20px 18px;
+            text-decoration: none;
+            font-size: 20px;
+        }
+        
+        .navbar a:hover {
+            background-color: #28474d;
+            color: white;
+        }
+        
+        .row {
+            display: -ms-flexbox;
+            /* IE10 */
+            display: flex;
+            -ms-flex-wrap: wrap;
+            /* IE10 */
+            flex-wrap: wrap;
+            margin: 0 -16px;
+        }
+        
+        .col-50 {
+            -ms-flex: 50%;
+            /* IE10 */
+            flex: 50%;
+        }
+        
+        .col-75 {
+            -ms-flex: 75%;
+            /* IE10 */
+            flex: 75%;
+        }
+        
+        .col-50,
+        .col-75 {
+            padding: 0 16px;
+        }
+        
+        .container {
+            background-color: #28474d;
+            padding: 5px 20px 15px 20px;
+            border: 1px solid lightgrey;
+            border-radius: 3px;
+            color: white;
+        }
+        
+        .container-name {
+            text-align: center
+        }
+        
+        input[type=text] {
+            width: 100%;
+            margin-bottom: 20px;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        
+        input[type=number] {
+            width: 100%;
+            margin-bottom: 20px;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        
+        select {
+            width: 100%;
+            margin-bottom: 20px;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        
+        label {
+            margin-bottom: 10px;
+            display: block;
+            font-size: 18px;
+        }
+        
+        .icon-container {
+            margin-bottom: 20px;
+            padding: 7px 0;
+            font-size: 24px;
+        }
+        
+        .btn {
+            background-color: #04AA6D;
+            color: white;
+            padding: 12px;
+            margin: 10px 0;
+            border: none;
+            width: 100%;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 17px;
+        }
+        
+        .btn:hover {
+            background-color: #45a049;
+        }
+        
+        a {
+            color: #2196F3;
+        }
+        
+        hr {
+            border: 1px solid lightgrey;
+        }
+        
+        span.price {
+            float: right;
+            color: grey;
+        }
+        
+        button {
+            padding: 20px 20px;
+            font-size: 16px;
+            margin: 20px;
+            color: white;
+            background-color: #82a0a2;
+            border-radius: 15px;
+        }
+        
+        button:hover {
+            background-color: #28474d;
+            color: white;
+        }
+        
+        .button-container {
+            display: flex;
+            justify-content: space-around;
+        }
+        /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other (also change the direction - make the "cart" column go on top) */
+        
+        @media (max-width: 800px) {
+            .row {
+                flex-direction: column-reverse;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <a href="#" onclick="goBack()"><i class="fa fa-arrow-left"></i> Quay lại</a>
+        <a href="index.html">Trang chủ</a>
+    </div>
+
+    <div class="container">
+        <form action="/action_page.php">
+            <!-- Thêm mã bất động sản và mã hợp đồng -->
+            <label for="propertyId">Mã Bất Động Sản:</label>
+            <input type="text" id="propertyId" name="propertyId" required>
+
+            <label for="contractCode">Mã Hợp Đồng:</label>
+            <input type="text" id="contractCode" name="contractCode" required>
+
+            <label for="contractContent">Nội dung Hợp đồng:</label>
+            <textarea id="contractContent" name="contractContent" rows="6" required></textarea>
+
+            <button type="button" onclick="saveContract()">Lưu Hợp đồng</button>
+        </form>
+    </div>
+
+    <script>
+        function goBack() {
+            window.location.href = 'index.html';
+        }
+
+        function saveContract() {
+            // Lấy thông tin mã bất động sản và mã hợp đồng
+            var propertyId = document.getElementById("propertyId").value;
+            var contractCode = document.getElementById("contractCode").value;
+
+            // Tạo mã tự động
+            var autoCode = 'PPC-HD' + contractCode;
+
+            // Thêm hợp đồng mới vào danh sách
+            var newContract = {
+                contractCode: contractCode,
+                propertyId: propertyId,
+                autoCode: autoCode,
+                content: 'Nội dung hợp đồng mới'
+            };
+
+            // Lấy danh sách hợp đồng từ Local Storage (nếu có)
+            var existingContracts = JSON.parse(localStorage.getItem('contracts')) || [];
+
+            // Thêm hợp đồng mới vào danh sách
+            existingContracts.push(newContract);
+
+            // Lưu danh sách hợp đồng mới vào Local Storage
+            localStorage.setItem('contracts', JSON.stringify(existingContracts));
+
+            // Thông báo lưu hợp đồng
+            alert("Hợp đồng đã được lưu với mã BĐS " + propertyId + " và mã hợp đồng " + contractCode + "!");
+
+            // Chuyển hướng đến trang quản lý sau khi lưu hợp đồng
+            window.location.href = 'quanlyhopdong.html';
+        }
+    </script>
+</body>
+
+</html>

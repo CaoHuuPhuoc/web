@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+        
+        .navbar {
+            background-color: #82a0a2;
+            overflow: hidden;
+        }
+        
+        .navbar ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            text-align: center;
+        }
+        
+        .navbar li {
+            display: inline-block;
+        }
+        
+        .navbar a {
+            display: block;
+            color: #224349;
+            text-align: center;
+            padding: 20px 18px;
+            text-decoration: none;
+            font-size: 20px;
+        }
+        
+        .navbar a:hover {
+            background-color: #28474d;
+            color: white;
+        }
+        
+        .row {
+            display: -ms-flexbox;
+            /* IE10 */
+            display: flex;
+            -ms-flex-wrap: wrap;
+            /* IE10 */
+            flex-wrap: wrap;
+            margin: 0 -16px;
+        }
+        
+        .col-50 {
+            -ms-flex: 50%;
+            /* IE10 */
+            flex: 50%;
+        }
+        
+        .col-75 {
+            -ms-flex: 75%;
+            /* IE10 */
+            flex: 75%;
+        }
+        
+        .col-50,
+        .col-75 {
+            padding: 0 16px;
+        }
+        
+        .container {
+            background-color: #28474d;
+            padding: 5px 20px 15px 20px;
+            border: 1px solid lightgrey;
+            border-radius: 3px;
+            color: white;
+        }
+        
+        .container-name {
+            text-align: center
+        }
+        
+        input[type=text] {
+            width: 100%;
+            margin-bottom: 20px;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        
+        input[type=number] {
+            width: 100%;
+            margin-bottom: 20px;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        
+        select {
+            width: 100%;
+            margin-bottom: 20px;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        
+        label {
+            margin-bottom: 10px;
+            display: block;
+            font-size: 18px;
+        }
+        
+        .icon-container {
+            margin-bottom: 20px;
+            padding: 7px 0;
+            font-size: 24px;
+        }
+        
+        .btn {
+            background-color: #04AA6D;
+            color: white;
+            padding: 12px;
+            margin: 10px 0;
+            border: none;
+            width: 100%;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 17px;
+        }
+        
+        .btn:hover {
+            background-color: #45a049;
+        }
+        
+        a {
+            color: #2196F3;
+        }
+        
+        hr {
+            border: 1px solid lightgrey;
+        }
+        
+        span.price {
+            float: right;
+            color: grey;
+        }
+        
+        button {
+            padding: 20px 20px;
+            font-size: 16px;
+            margin: 20px;
+            color: white;
+            background-color: #82a0a2;
+            border-radius: 15px;
+        }
+        
+        button:hover {
+            background-color: #28474d;
+            color: white;
+        }
+        
+        .button-container {
+            display: flex;
+            justify-content: space-around;
+        }
+        /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other (also change the direction - make the "cart" column go on top) */
+        
+        @media (max-width: 800px) {
+            .row {
+                flex-direction: column-reverse;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <ul>
+            <li><a href="#home">Trang chủ</a></li>
+            <li><a href="#about">Giới thiệu</a></li>
+            <li><a href="#property">Bất động sản</a></li>
+            <li><a href="#contract">Hợp đồng</a></li>
+            <li><a href="#contact">Liên hệ</a></li>
+            <li><a href="#search"><i class="fa fa-search"></i></a>
+                <li>
+                    <li><a href="#login"><i class="fa fa-fw fa-user"></i></a>
+                        <li>
+        </ul>
+    </nav>
+
+    <div class="row">
+        <div class="col-75">
+            <div class="container">
+                <form action="/action_page.php">
+                    <div class="container-name">
+                        <h1> Thêm bất động sản mới </h1>
+                    </div>
+                    <div class="row">
+                        <div class="col-50">
+                            <label for="propertyID">Mã bất động sản</label>
+                            <input type="text" id="propertyID" name="propertyID" placeholder="Mã BĐS" disabled>
+                            <label for="propertyName">Tên bất động sản</label>
+                            <input type="text" id="propertyName" name="propertyName" placeholder="Tên BĐS">
+                            <label for="propertyType">Loại bất động sản</label>
+                            <select id="propertyType" name="propertyType">
+                	<option value="typle">Loại BĐS</option>
+        			    <option value="chungcu">Chung cư</option>
+        			    <option value="canho">Căn hộ dịch vụ</option>
+        			    <option value="nharieng">Nhà riêng</option>
+        			    <option value="villa">Villa</option>
+                  <option value="studio">Studio</option>
+                  <option value="office">Office</option>
+            	</select>
+                            <label for="Area">Diện tích</label>
+                            <input type="number" id="Area" name="Area" placeholder="Nhập diện tích">
+                            <label for="Price">Giá bán</label>
+                            <input type="number" id="Price" name="Price" placeholder="Nhập giá bán">
+                            <label for="Rate">Lãi xuất trả góp</label>
+                            <input type="text" id="Rate" name="Rate" placeholder="7.99%">
+                        </div>
+                        <div class="col-50">
+                            <label for="City">Tỉnh/Thành phố</label>
+                            <select id="City" name="City">
+                <option value="ci">Chọn Tỉnh/Thành phố</option>
+        			  <option value="hanoi">Hà Nội</option>
+        			  <option value="hochiminh">Hồ Chí Minh</option>
+        			  <option value="danang">Đà Nẵng</option>
+        			  <option value="cantho">Cần Thơ</option>
+                <option value="binhduong">Bình Dương</option>
+                <option value="vungtau">Vũng Tàu</option>
+                <option value="bacgiang">Bắc Giang</option>
+                <option value="dongnai">Đồng Nai</option>
+                <option value="camau">Cà Mau</option>
+                <option value="longan">Long An</option>
+            	</select>
+                            <label for="District">Quận/Huyện</label>
+                            <select id="District" name="District">
+                <option value="di">Chọn Quận/Huyện </option>
+        			  <option value="binhtan">Bình Tân</option>
+        			  <option value="binhthanh">Bình Thạnh</option>
+        			  <option value="q1">Quận 1</option>
+                <option value="q2">Quận 2</option>
+                <option value="q3">Quận 3</option>
+                <option value="q4">Quận 4</option>
+                <option value="q5">Quận 5</option>
+                <option value="q6">Quận 6</option>
+                <option value="q7">Quận 7</option>
+                <option value="q8">Quận 8</option>
+        			  <option value="benluc">Bến Lức</option>
+                <option value="duchoa">Đức Hòa</option>
+                <option value="duchue">Đức Huệ</option>
+                <option value="bencat">Bến Cát</option>
+                <option value="dautien">Dầu Tiến</option>
+                <option value="thuânn">Thuận An</option>   
+            	</select>
+                            <label for="Address">Địa chỉ</label>
+                            <input type="text" id="Address" name="Address" placeholder="260 Trần Hưng Đạo">
+                            <label for="Rooms">Số lượng phòng ngủ</label>
+                            <input type="number" id="Rooms" name="Rooms" placeholder="Nhập số lượng phòng">
+                            <label for="Brooms">Số lượng phòng tắm</label>
+                            <input type="number" id="Brooms" name="Brooms" placeholder="Nhập số lượng phòng">
+                            <label for="Status">Trạng thái</label>
+                            <select id="Status" name="Status">
+        			  <option value="st">Chọn trạng thái</option>
+        			  <option value="dangban">Đang bán</option>
+                <option value="dathanhtoan">Đã bán thanh toán 1 lần</option>
+                <option value="datragop">Đang bán trả góp</option>
+                <option value="khonghienthi">Không hiển thị</option>
+                <option value="hethan">Hết hạn để bán</option>
+                <option value="cocdaydu">Đang cọc đầy đủ</option>
+                <option value="coctragop">Đang cọc trả góp</option>
+            	</select>
+                        </div>
+                        <div class="col-50">
+                            <label for="Service">Dịch vụ</label>
+                            <input type="checkbox" checked="checked" name="service1">Hồ bơi
+                            <input type="checkbox" checked="checked" name="service2">Nhà bếp
+                            <input type="checkbox" checked="checked" name="service3">Ban công
+                            <input type="checkbox" checked="checked" name="service4">Thang máy
+                            <input type="checkbox" checked="checked" name="service5">Chỗ đậu xe
+                            <input type="checkbox" checked="checked" name="service6">Full nội thất
+                        </div>
+                        <div class="col-50">
+                            <form id="property-form" action="/upload" method="post" enctype="multipart/form-data">
+                                <label for="imageUpload">Thêm hình ảnh avatar</label>
+                                <input type="file" id="imageUpload" name="image" accept="image/*">
+                            </form>
+                        </div>
+                        <div class="col-50">
+                            <div class="button-container">
+                                <button onclick="goBack()">Quay về</button>
+                            </div>
+                        </div>
+                        <div class="col-50">
+                            <div class="button-container">
+                                <button type="button" onclick="saveProperty()">Thêm</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Thêm dòng script để định nghĩa properties -->
+    <<!-- Thêm dòng script để định nghĩa properties -->
+        <script>
+            // Định nghĩa mảng properties
+            var properties = [];
+
+            function saveProperty() {
+                var propertyId = document.getElementById("propertyID").value;
+                var propertyName = document.getElementById("propertyName").value;
+                var propertyType = document.getElementById("propertyType").value;
+                var area = document.getElementById("Area").value;
+                var price = document.getElementById("Price").value;
+                var rate = document.getElementById("Rate").value;
+                var city = document.getElementById("City").value;
+                var district = document.getElementById("District").value;
+                var address = document.getElementById("Address").value;
+                var rooms = document.getElementById("Rooms").value;
+                var brooms = document.getElementById("Brooms").value;
+                var status = document.getElementById("Status").value;
+
+                // Tạo một đối tượng bất động sản mới
+                var newProperty = {
+                    id: propertyId,
+                    name: propertyName,
+                    type: propertyType,
+                    area: area,
+                    price: price,
+                    rate: rate,
+                    city: city,
+                    district: district,
+                    address: address,
+                    rooms: rooms,
+                    brooms: brooms,
+                    status: status
+                };
+
+                // Thêm đối tượng mới vào danh sách bất động sản
+                properties.push(newProperty);
+
+                // Chuyển hướng về trang quản lý bất động sản sau khi thêm
+                window.location.href = 'properties.html';
+            }
+        </script>
+
+</body>
+
+</html>
